@@ -1,4 +1,72 @@
 {% extends "court/base.html" %}
 {% block content %}
-    <h1>Fee Calculator</h1>
+    <div class="containercasefile casefilediv">
+        <form action="{% url 'court:feecalc' %}"  method="POST" style="background: #025e5c;">
+            {% csrf_token%}
+            <h2>Fee calculator</h2>
+            <div>
+                <label for="court" style="font-size: large; color: black;">COURT TYPE</label><br>
+                <input type="radio" id="Supreme court" name="court" value="Supreme court">
+                <label for="Supreme court">Supreme court</label><br>
+                <input type="radio" id="High court" name="court" value="High court">
+                <label for="High court">High court</label><br>
+                <input type="radio" id="District court" name="court" value="District court">
+                <label for="District court">District court</label><br>
+                <input type="radio" id="Sessions court" name="court" value="Sessions court">
+                <label for="Sessions court">Sessions court</label><br>
+            </div>
+            <div>
+                <label for="case" style="font-size: large; color: black;">CASE TYPE</label><br>
+                <input type="radio" id="Civil" name="case" value="Civil" onclick="getcasetype()">
+                <label for="Civil">Civil</label><br>
+                <input type="radio" id="Criminal" name="case" value="Criminal" onclick="getcasetype()"> 
+                <label for="Criminal">Criminal</label><br>
+            </div>
+            <div id="subtype1" style="display:none;">
+                <label for="subtype" style="font-size: large; color: black;">CASE SUB-TYPE</label><br>
+                <input type="radio" id="Arbitration Cases" name="subtype" value="Arbitration Cases">
+                <label for="Arbitration Cases">Arbitration Cases</label><br>
+                <input type="radio" id="Rent Petitions" name="subtype" value="Rent Petitions">
+                <label for="Rent Petitions">Rent Petitions</label><br>
+                <input type="radio" id="Recovery Suits" name="subtype" value="Recovery Suits">
+                <label for="Recovery Suits">Recovery Suits</label><br>
+                <input type="radio" id="Civil Appeals" name="subtype" value="Civil Appeals">
+                <label for="Civil Appeals">Civil Appeals</label><br>
+                <input type="radio" id="Transfer Applications" name="subtype" value="Transfer Applications">
+                <label for="Transfer Applications">Transfer Applications</label><br>
+            </div>
+            <div id="subtype2" style="display: none;">
+                <label for="subtype" style="font-size: large; color: black;">CASE SUB TYPE</label><br>
+                <input type="radio" id="Bail Applications" name="subtype" value="Bail Applications">
+                <label for="Bail Applications">Bail Applications</label><br>
+                <input type="radio" id="Criminal Appeals" name="subtype" value="Criminal Appeals">
+                <label for="Criminal Appeals">Criminal Appeals</label><br>
+                <input type="radio" id="Criminal Revision Cases" name="subtype" value="Criminal Revision Cases">
+                <label for="Criminal Revision Cases">Criminal Revision Cases</label><br>
+                <input type="radio" id="Maintenance Cases" name="subtype" value="Maintenance Cases">
+                <label for="Maintenance Cases">Maintenance Cases</label><br>
+                <input type="radio" id="Miscellaneous Applications" name="subtype" value="Miscellaneous Applications">
+                <label for="Miscellaneous Applications">Miscellaneous Applications</label><br>
+            </div>
+            <br>
+            <input type="submit" name="Submit" id ="Submit" value="Submit" style="color: black; margin-left: 265px;">
+            <br>
+        </form>
+    </div>
+    <script>
+        function getcasetype(){
+            var x = document.getElementById("Civil");
+            var y = document.getElementById("Criminal");
+            var s1 = document.getElementById("subtype1");
+            var s2 = document.getElementById("subtype2");
+            if(x.checked){
+                s1.style.display="block";
+                s2.style.display="none";
+            }
+            else if(y.checked){
+                s2.style.display="block";
+                s1.style.display="none";
+            }
+        }
+    </script>
 {% endblock content %}
