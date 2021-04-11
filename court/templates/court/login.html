@@ -1,0 +1,16 @@
+{% extends "court/base.html" %}
+{% block content %}
+    <div class="containercasefile casefilediv">
+        <form id="casefile" action="" method="post">
+            {% csrf_token%}
+            <h2>Login</h2>
+            <label for="username">USERNAME</label><br>
+            <fieldset style="color: black;">{{ form.username }}</fieldset>
+            <label for="password">PASSWORD</label><br>
+            <fieldset style="color: black;">{{ form.password}}<br></fieldset>
+            <input type="submit" name="Submit" id ="Submit" value="Submit" style="color: black">
+        
+        </form>
+    </div>
+    
+{% endblock content %}

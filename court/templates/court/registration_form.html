@@ -1,0 +1,40 @@
+{% extends "court/base.html" %}
+{% block content %}
+<div class="containercasefile casefilediv">
+    <form id="casefile" action="" method="post">
+        {% csrf_token%}
+        <h2>Registration</h2>
+        <label for="username">USERNAME</label><br>
+        <fieldset style="color: black;">{{ form.username }}</fieldset>
+        
+        <label for="password">PASSWORD</label><br>
+        <fieldset style="color: black;">{{ form.password}}</fieldset>
+        
+        <label for="password1">CONFIRM PASSWORD</label>
+        <fieldset style="color: black;">{{ form.password1}}</fieldset>
+        
+        <label for="email">EMAIL</label>
+        <fieldset style="color: black;">{{ form.email}}</fieldset>
+        
+        <label for="first_name">FIRST NAME</label>
+        <fieldset style="color: black;">{{ form.first_name}}</fieldset>
+        
+        <label for="last_name">LAST NAME</label>
+        <fieldset style="color: black;">{{ form.last_name}}</fieldset>
+        
+        <label for="user_type">USER TYPE</label>
+        <fieldset style="color: black;">{{ form.user_type}}</fieldset>
+        
+        <label for="court">COURT</label>
+        <fieldset style="color: black;">{{ form.court }}</fieldset>
+        <label for="district">DISTRICT</label>
+        <fieldset style="color: black;">{{ form.address }}</fieldset>
+        <label for="license_no">LICENSE NUMBER</label>
+        <fieldset style="color: black;">{{ form.license_no}}</fieldset>
+        
+        <input type="submit" name="Submit" id="Submit" value="Submit" style="color: black">
+
+    </form>
+</div>
+
+{% endblock content %}

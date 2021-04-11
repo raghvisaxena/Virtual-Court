@@ -1,0 +1,146 @@
+{% extends "court/base.html" %}
+{% block content %}
+<br/><br/>
+<div class="tabs">
+  <div class="tab-button-outer">
+    <ul id="tab-button">
+      <li><a href="#tab01" id="on_login" onclick="login()">Log In</a></li>
+<li><a href="#tab02" onclick="register()">Register</a></li>
+
+</ul>
+</div>
+<div class="tab-select-outer">
+    <select id="tab-select">
+        <option value="#tab01">Log In</option>
+        <option value="#tab02">Register</option>
+
+    </select>
+</div>
+
+<div class="form">
+    <div id="tab01" class="tab-contents fform">
+        <form id="login" class="input-field"><br>
+
+            <label for="UserID"> &ensp;</label>
+            <input type="text" class="input-field" name="UserID" placeholder="Enter User ID" required>
+
+            <label for="Password"> &ensp;</label>
+            <input type="password" class="input-field" name=Password placeholder="Enter Password" required><br>
+            <br>
+
+
+
+            <label for="User">&ensp; User Type &ensp; </label>
+            <select name="User">
+                <option value="o1">Judge</option>
+                <option value="o2">Lawyer</option>
+            </select><br>
+            <br><br>
+
+            <div class="">
+                <button type="submit" class="">Log In</button>
+
+            </div>
+
+        </form>
+    </div>
+    <div id="tab02" class="tab-contents fform ">
+        <form id="register" class="input-group input-field">
+            <div class="space">
+                <label for="UserID"> &ensp;</label>
+                <input type="text" class="input-field" name="UserID" placeholder="Enter User ID" required><br>
+            </div>
+
+            <div class="space">
+                <label for="Password"> &ensp;</label>
+                <input type="password" class="input-field" name=Password placeholder="Enter Password" required>
+
+                <label for="Confirm">&ensp;</label>
+                <input type="password" class="input-field" name="Confirm" placeholder="Confirm Password" required
+                    style="width:100%"><br>
+            </div>
+            <br>
+            &ensp;<input type="checkbox" class="check-box"><span>&ensp;Remember Password</span><br>
+
+            <div class="space">
+                <label for="Email"> &ensp; </label>
+                <input type="email" class="input-field" name="Email" placeholder="Enter Email" required><br>
+            </div>
+
+            <div class="space">
+                <label for="FirstName"> &ensp; </label>
+                <input type="text" class="input-field" name="FirstName" placeholder="Enter First Name" required>
+
+                <label for="LastName"> &ensp; </label>
+                <input type="text" class="input-field" name="LastName" placeholder="Enter Last Name" required><br>
+            </div>
+
+            <div class="space"><br>
+                <label for="User">&ensp;&ensp;Choose User Type: &ensp; </label>
+                <select name="User">
+                    <option value="o1">Judge</option>
+                    <option value="o2">Lawyer</option>
+                </select><br>
+            </div>
+
+            <div class="space">
+                <label for="CaseType"> &ensp;&ensp;Choose Court Type:&ensp; </label>
+                <select id="CourtType">
+                    <option value="Supreme Court">Supreme Court</option>
+                    <option value="High Court">High Court</option>
+                    <option value="District Court">District Court</option>
+                    <option value="Session Court">Session Court</option>
+                </select>
+            </div>
+
+            <div class="space">
+                <label for="bar">&ensp;</label>
+                <input type="text" class="input-field" name="bar" placeholder="Enter Bar Registration No." required><br>
+            </div>
+
+            <div class="space">
+                <label for="contact">&ensp;</label>
+                <input type="tel" class="input-field" name="contact" placeholder="Enter Contact No." required
+                    style="color:black"><br>
+            </div>
+
+            <div class="space">
+                <button type="submit" class="submit-btn">Register</button>
+                <div class="space">
+        </form>
+    </div>
+</div>
+
+</div>
+{% endblock content %}
+<script>
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var z = document.getElementById("btn");
+
+    function register() {
+        document.getElementById("tab-select").style.color = "darkgreen";
+        var x = document.getElementById('register');
+        var y = document.getElementById('login');
+        if (x.style.visibility === 'visible') {
+            x.style.visibility = 'hidden';
+            y.style.visibility = 'visible';
+        } else {
+            x.style.visibility = 'visible';
+            y.style.visibility = 'hidden';
+        }
+    }
+
+    function login() {
+        document.getElementById("on_login").style.color = "darkgreen";
+        var x = document.getElementById('login');
+        var y = document.getElementById('register');
+        if (x.style.visibility === 'visible') {
+            x.style.visibility = 'hidden';
+            y.style.visibility = 'visible';
+        } else {
+            x.style.visibility = 'visible';
+            y.style.visibility = 'hidden';
+        }
+    }
+</script>

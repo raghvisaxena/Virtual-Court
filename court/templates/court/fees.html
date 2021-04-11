@@ -1,0 +1,17 @@
+{% extends "court/base.html" %}
+{% block content %}
+    <div class="containercasefile casefilediv" style="background: #025e5c;">
+        <h1>Fee calculator</h1>
+        <h2>Results</h2>
+        <p style="font-size: larger;">
+            Court Type : {{court}}<br>
+            Case Type : {{case}}<br>
+            Case Sub-type : {{subtype}}<br>
+        </p>
+        <h3>Court Fees : {{fees}}</h3><br>
+    </div>
+    <br>
+    <form id="back" action="{% url 'court:feecalc' %}">
+        <input type="submit" value="Calculate for another case" style="background: #025e5c; color: azure; margin-left: 433px; ; font-size: 20px; height: 45px;">
+    </form>
+{% endblock content %}

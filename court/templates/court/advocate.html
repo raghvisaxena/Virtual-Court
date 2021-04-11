@@ -1,0 +1,90 @@
+{% extends "court/base2.html" %}
+{% block content %}
+
+<div class="container">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+      </div>
+</div>
+
+
+<h1 class="welcome">Welcome!</h1>
+
+<table style="border: none;">
+ <tr>   
+<td><button type="submit" class="file"><a href="{% url 'court:fileCase' %}">File a case</a></button></td>
+
+<td>
+<div class="wrap">
+    <div class="search">
+      <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+ 
+        <button type="submit" class="btn"><span style="color:#335e5d;" class="fa fa-search"></span></button>
+      </form>
+    </div></div>
+ </div>
+</td>
+</tr>
+</table>
+
+<ul class="Nav-case">
+    <li>Total Cases <br> <span class="num">50</span></li>
+    <li>Pending Cases<br> <span class="num">25</span></li>
+    <li>Completed Cases<br> <span class="num">25</span></li>
+</ul>
+
+<table class="case-data" align="center">
+<tr>
+    <th class="case-data">CNR No.</th>
+    <th class="case-data">File No.</th>
+    <th class="case-data">Petitioner</th>
+</tr>
+
+<tr>
+    <td class="case-data">123</td>
+    <td class="case-data">456</td>
+    <td class="case-data">Someone</td>
+</tr>
+<tr>
+    <td class="case-data">123</td>
+    <td class="case-data">456</td>
+    <td class="case-data">Someone</td>
+</tr>
+<tr>
+    <td class="case-data">123</td>
+    <td class="case-data">456</td>
+    <td class="case-data">Someone</td>
+</tr>
+<tr>
+    <td class="case-data">123</td>
+    <td class="case-data">456</td>
+    <td class="case-data">Someone</td>
+</tr>
+<tr>
+    <td class="case-data">123</td>
+    <td class="case-data">456</td>
+    <td class="case-data">Someone</td>
+</tr>
+<tr>
+    <td class="case-data">123</td>
+    <td class="case-data">456</td>
+    <td class="case-data">Someone</td>
+</tr>
+<tr>
+    <td class="case-data">123</td>
+    <td class="case-data">456</td>
+    <td class="case-data">Someone</td>
+</tr>
+</table><br><br>
+
+{% endblock content %}
+
+   
+    

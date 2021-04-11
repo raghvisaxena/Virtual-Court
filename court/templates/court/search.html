@@ -1,0 +1,22 @@
+{% extends "court/base.html" %}
+{% block content %}
+
+<br><br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10">
+      <br>
+<h2 >Enter CNR number to search</h2><br>
+<br><br>
+
+<form  id="cnrsearch" action="{% url 'court:status' cnr %}"  method="POST" >
+  {% csrf_token%}
+  <input type="text" placeholder="Enter CNR..." name="search" style="color:black">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<br><br><br><br><br><br><br><br>
+
+</div></div></div>
+
+{% endblock content %}

@@ -1,0 +1,75 @@
+{% extends "court/base.html" %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10">
+<h2>Enter CNR number to search</h2><br>
+
+<form id="cnrsearch"  method="GET" action="">
+  <input type="text" placeholder="Enter CNR..." name="search" style="color:black">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<br><br>
+<table style="width:100%" class="status">
+  {% for case in case_details %}
+  <h3>Case Details</h3><br>
+  <tr>
+    <th >Case Type</th>
+    <td colspan="3">{{ case.case_type }}</td>
+    </tr>
+  <tr>
+    <th>Filing Date</th>
+      <td>dd/mm/yyyy</td>
+    <th>Registration Date</th>
+    <td>dd/mm/yyyy</td>
+
+  </tr>
+  <tr>
+    <th >CNR Number</th>
+    <td colspan="3">{{ case.cnr }}</td>
+    </tr>
+
+</table>
+
+<table style="width:100%" class="status"><br><br>
+  <h3>Case Status</h3><br>
+  <tr>
+    <th >First Hearing Date</th>
+    <td colspan="3">Write the First Hearing Date here</td>
+    </tr>
+  <tr>
+    <th>Next Hearing Date</th>
+      <td colspan="3">Write the next Hearing Date here</td>
+
+
+  </tr>
+  <tr>
+    <th >Stage of case</th>
+    <td colspan="3">Write the Stage of case here</td>
+    </tr>
+
+    <tr>
+      <th >Court Number and Judge</th>
+      <td colspan="3">Write the Court Number and Judge here</td>
+      </tr>
+
+</table>
+<table style="width:100%" class="status"><br><br>
+  <h3>Petitioner and advocate</h3><br>
+  <tr>
+    <td colspan="3">Write above details</td>
+    </tr>
+
+</table>
+<table style="width:100%" class="status"><br><br>
+  <h3>Respondent and advocate</h3><br>
+  <tr>
+    <td colspan="3">Write above details</td>
+    </tr>
+    {% endfor %}
+</table>
+</div></div></div>
+
+{% endblock content%}

@@ -1,0 +1,114 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+      background-color:#101820FF;
+  }
+  
+  .tabs {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  #tab-button {
+    display: table;
+    table-layout: fixed;
+    width: 92%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: white;
+  }
+  #tab-button li {
+    display: table-cell;
+    width: 20%;
+  }
+  #tab-button li a {
+    display: block;
+    padding: .5em;
+    border: 2px solid #002200;
+    text-align: center;
+    color: solid black;
+    text-decoration: none;
+  }
+  #tab-button li:not(:first-child) a {
+    border-left: none;
+    color: solid black;
+  }
+  #tab-button li a:hover,
+  #tab-button .is-active a {
+    border-bottom-color: transparent;
+    color: white;
+    background: #002200;
+  }
+  .tab-contents {
+    padding: .5em 2em 1em;
+  }
+  
+  .tab-button-outer {
+    display: none;
+  }
+  .tab-contents {
+    margin-top: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    .tab-button-outer {
+      position: relative;
+      z-index: 2;
+      display: block;
+    }
+    .tab-select-outer {
+      display: none;
+    }
+    .tab-contents {
+      position: relative;
+      top: -1px;
+      margin-top: 0;
+    }
+  }
+  
+
+  #login{
+    z-index:5;
+    box-shadow: 5px 10px 18px rgb(50, 75, 100);
+    overflow: hidden;
+    padding-left: 2px;
+  
+  }
+  .loginbutton{
+    background-color: #101820FF;
+    text-align: center;
+  }
+
+  #register{
+    z-index:4;
+    position: relative;
+    overflow:hidden;
+    top:-990%;
+    left:70%;
+    visibility: hidden;
+    margin-left:-385px;
+    margin-top: -40px;
+    padding-left:5px;
+    padding-right:5px;
+    box-shadow: 5px 10px 18px rgb(50, 75, 100);
+    
+  }
+  
+  .fform{
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 30px;
+    color: white;
+  
+    padding: 25px;
+    margin: 0px 0;
+    width: 100%;
+    left:-4.5%;
+    
+  }
+  
+  .input-field{
+    width: 100%;
+    padding: 8px;
+  }
