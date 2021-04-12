@@ -59,8 +59,8 @@ class Judge(models.Model):
 class Case(models.Model):
     advocate=models.ForeignKey(User,on_delete=models.CASCADE,related_name="advocate_user")
     name_of_applicant=models.CharField(max_length=400)
-    phone_number=models.BigIntegerField()
     address=models.CharField(max_length=500)
+    phone_number=models.BigIntegerField(null=True, blank=True)
     case_type=models.CharField(max_length=3,choices=Case_type)
     court_type=models.CharField(choices=Court_Type,max_length=3)
     subject=models.CharField(max_length=500)

@@ -210,17 +210,26 @@ class AdvocateView(ListView):
     model = Case
 
     def get_queryset(self):
-        print(1)
         qs = super().get_queryset()
-        print(2)
         user = self.request.user
-        print(3)
-        # if user is None:
-        #     print(0)
-        #     return None
-        print(10)
-        print(qs.filter(advocate=user))
+        if user is None:
+            print(0)
+            return None
         return qs.filter(advocate=user)
+
+class JudgeView(ListView):
+    template_name = 'court/judge.html'
+    context_object_name = "case_details"
+    model = Case
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        user = self.request.user
+        if user is None:
+             print(0)
+             return None
+        return qs.filter(judge=user)
+
         
 
 # class SearchForm(View):
