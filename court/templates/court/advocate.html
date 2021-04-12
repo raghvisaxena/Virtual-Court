@@ -87,7 +87,7 @@
 </table>
 
 <ul class="Nav-case">
-    <li>Total Cases <br> <span class="num">50</span></li>
+    <li>Total Cases <br> <span class="num">{{ case_details.count }}</span></li>
     <li>Pending Cases<br> <span class="num">25</span></li>
     <li>Completed Cases<br> <span class="num">25</span></li>
 </ul>
@@ -99,7 +99,14 @@
     <th class="case-data">Petitioner</th>
 </tr>
 
+{% for case in case_details %}
 <tr>
+    <td class="case-data">{{case.cnr}}</td>
+    <td class="case-data">{{case.fileNo}}</td>
+    <td class="case-data">{{case.name_of_applicant}}</td>
+</tr>
+{% endfor %}
+<!-- <tr>
     <td class="case-data">123</td>
     <td class="case-data">456</td>
     <td class="case-data">Someone</td>
@@ -128,12 +135,7 @@
     <td class="case-data">123</td>
     <td class="case-data">456</td>
     <td class="case-data">Someone</td>
-</tr>
-<tr>
-    <td class="case-data">123</td>
-    <td class="case-data">456</td>
-    <td class="case-data">Someone</td>
-</tr>
+</tr> -->
 </table><br><br>
 
   <!-- Site footer -->

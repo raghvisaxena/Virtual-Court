@@ -105,7 +105,7 @@ class LoginView(View):
                 user_type=user_profile.user_type
                 # print(user_type)
                 if user_type=="Lawyer":
-                    return render(request, "court/advocate.html")
+                    return redirect("court:advocate")
                 elif user_type=="Judge":
                     return render(request, "court/judge.html")
                 else:
@@ -204,6 +204,25 @@ class SearchView(ListView):
            result = None
        return result
 
+class AdvocateView(ListView):
+    template_name = 'court/advocate.html'
+    context_object_name = "case_details"
+    model = Case
+
+    def get_queryset(self):
+        print(1)
+        qs = super().get_queryset()
+        print(2)
+        user = self.request.user
+        print(3)
+        # if user is None:
+        #     print(0)
+        #     return None
+        print(10)
+        print(qs.filter(advocate=user))
+        return qs.filter(advocate=user)
+        
+
 # class SearchForm(View):
 #     form_class=SearchForm
 #     template_name='court/search.html'
@@ -220,7 +239,6 @@ class SearchView(ListView):
 
 def home(request):
     return render(request, "court/home.html", {"title": "Home"})
-
 
 def about(request):
     return render(request, "court/about.html", {"title": "About"})

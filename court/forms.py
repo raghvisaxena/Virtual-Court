@@ -64,7 +64,7 @@ class CaseForm(forms.ModelForm):
             "address_of_respondent",
         ]
        
-        exclude = ('advocate','status','cnr','fileNo','judge')
+        exclude = ('advocate','status','cnr','fileNo','judge','file_date')
 
 
 class SearchForm(forms.ModelForm):
