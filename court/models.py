@@ -43,10 +43,7 @@ class Advocate(models.Model):
     name=models.CharField(max_length=400)
     address=models.CharField(max_length=500)
     court_type=MultiSelectField(choices=Court_Type,max_length=20)
-<<<<<<< HEAD
     #contact_number=models.BigIntegerField(null=True)
-=======
->>>>>>> 32bc051cd88861e3c772ff7f5a37478dc0df9c1f
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -76,13 +73,11 @@ class Case(models.Model):
     name_of_respondent=models.CharField(max_length=400,null=True)
     lawyer_of_respondent=models.CharField(max_length=400,null=True)
     address_of_respondent=models.CharField(max_length=500, null=True)
+    file_date=models.DateField(auto_now=True, blank=True, null=True)
     judge=models.ForeignKey(Judge,on_delete=models.CASCADE,related_name="judge_user",null=True,blank=True)
 
     def __str__(self):
         return self.cnr
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 32bc051cd88861e3c772ff7f5a37478dc0df9c1f
 # Create your models here.
