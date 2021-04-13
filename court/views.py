@@ -101,13 +101,13 @@ class LoginView(View):
             if user.is_active:
                 login(request, user)
                 user_profile=UserProfile.objects.get(user=request.user)
-                # print(user_profile)
+                #print(user_profile)
                 user_type=user_profile.user_type
-                # print(user_type)
+                #print(user_type)
                 if user_type=="Lawyer":
                     return redirect("court:advocate")
                 elif user_type=="Judge":
-                    return render(request, "court/judge.html")
+                    return redirect("court:judge")
                 else:
                     return redirect("court:login",{"Wrong User Type"})
 
@@ -162,7 +162,7 @@ class FileCase(LoginRequiredMixin,View):
                 print(form.instance.district)
                 form.instance.judge=get_judge(form.instance.court_type,form.instance.district)
                 provider.save()
-                return render(request, 'court/advocate.html')
+                return redirect("court:advocate")
             
         else:
             return render(request,self.template_name,{'form':form})
@@ -224,14 +224,11 @@ class JudgeView(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        print(1)
-        user = self.request.user
-        print(2)
-        if user is None:
+        j = Judge.objects.get(user=self.request.user)
+        if j is None:
              print(0)
              return None
-        print(3)
-        return qs.filter(judge=user)
+        return qs.filter(judge=j)
 
         
 
