@@ -53,7 +53,7 @@ class Judge(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
     name=models.CharField(max_length=100)
     court_type=models.CharField(choices=Court_Type,max_length=20)
-    district=models.CharField(max_length=100,blank=True,null=True)
+    district=models.CharField(max_length=500)
     license_no = models.CharField(max_length=17, primary_key=True)
     
 class Case(models.Model):

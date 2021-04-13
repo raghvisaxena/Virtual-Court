@@ -71,8 +71,8 @@ class UserFormView(View):
                     judge_details.user=user
                     judge_details.license_no=license_no
                     judge_details.name=first_name+last_name
-                    judge_details.court_type=court
-                    judge_details.address=address
+                    judge_details.court_type=' '.join(map(str, court))
+                    judge_details.district=address
                     judge_details.save()
                     messages.success(request, "Account register successfully")
                     return redirect("court:login")
@@ -224,10 +224,13 @@ class JudgeView(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
+        print(1)
         user = self.request.user
+        print(2)
         if user is None:
              print(0)
              return None
+        print(3)
         return qs.filter(judge=user)
 
         
