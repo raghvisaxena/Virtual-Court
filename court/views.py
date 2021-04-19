@@ -230,7 +230,33 @@ class JudgeView(ListView):
              return None
         return qs.filter(judge=j)
 
-        
+class VerdictView(UpdateView):
+    template_name = "court/Case_form.html"
+    context_object_name = "case_details"
+    model = Case
+    fields = [
+        'verdict',
+        'status',
+    ]
+    def post(self,request,pk):
+        provider = Case.objects.get(id=pk)
+        form=VerdictForm(request.POST,instance=provider)
+        if form.is_valid():
+            provider=form.save(commit=False)
+            verdict=form.cleaned_data["verdict"]
+            provider.status = True
+            provider.save(update_fields=["verdict","status"])
+            return redirect("court:judge")
+    #def post(self,request,pk):
+    #    case = Case.objects.get(pk=id)
+    #    form = VerdictForm(request.POST, instance=case)
+    #    form.save()
+    #    return redirect("court:judge")
+    #def form_valid(self,form):
+    #    form.instance.advocate = self.request.user
+    #    return super().form_valid(form)
+
+
 
 # class SearchForm(View):
 #     form_class=SearchForm

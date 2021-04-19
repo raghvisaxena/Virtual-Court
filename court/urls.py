@@ -14,5 +14,6 @@ urlpatterns = [
     path('feecalc/', views.FeesFormView.as_view(), name='feecalc'),
     path('search/', views.search, name='search'),
     path('status/', views.SearchView.as_view(), name='status'),
+    path('judge/case/<int:pk>/verdict/', views.VerdictView.as_view(), name='caseverdict'),
     # path('search/', views.search, name='search'),
 ]

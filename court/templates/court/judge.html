@@ -69,7 +69,6 @@
 
 <table>
  <tr>   
-<td><button type="submit" class="file"><a href="#">Upload Verdict</a></button></td>
 
 <td>
 <div class="wrap">
@@ -97,6 +96,7 @@
     <th class="case-data">CNR No.</th>
     <th class="case-data">File No.</th>
     <th class="case-data">Petitioner</th>
+    <th class="case-data">Status</th>
 </tr>
 
 {% for case in case_details %}
@@ -104,6 +104,14 @@
     <td class="case-data">{{case.cnr}}</td>
     <td class="case-data">{{case.fileNo}}</td>
     <td class="case-data">{{case.name_of_applicant}}</td>
+    <td class="case-data">
+      {% if case.status %}
+        <h5>Closed</h5>
+      {% else %}
+        <h5>Pending</h5>
+        <button id="ver" type="submit" value="{{case.cnr}}" style="size: 7px; background-color: #adcac9; color: black;"><a href="{% url 'court:caseverdict' case.id %}">Upload Verdict</a></button>
+      {% endif %}  
+    </td>
 </tr>
 {% endfor %}
 

@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>E-Courts</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'court/style_dashboard.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="./" class="navbar-brand">E-Courts</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="home.html">Home</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Supreme Court</a></li>
+            <li><a href="#">High Courts</a></li>
+            <li><a href="#">District Courts</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{% url 'court:feecalc' %}">Fee calculator</a>
+        </li>
+        <li>
+          <a href="{% url 'court:status' %}">Check Status</a>
+        </li>
+        <li >
+          <a href="{% url 'court:logout' %}">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><br /><br ><br >
+
+<!-- nav bar ends here -->
+
+<div class="container">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+      </div>
+</div>
+
+<div style="margin-left: 275px;"> 
+    <h2>Case Details</h2><br>
+    <h4>CNR Number: {{ object.cnr }}</h4>
+    <h3 style="text-align: center; margin-left: -300px;">{{ object.name_of_applicant }} v. {{ object.name_of_respondent }}</h3<br><br><br> 
+    <div style="margin-left: 60px;">
+      <h4>{% if object.case_type == 'CIV' %}Case Type: Civil {% else %}Case Type: Criminal {% endif %} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      {% if object.court_type == 'SUP' %}Court Type: Supreme Court
+      {% elif object.court_type == 'HIG' %}Court Type: High Court
+      {% elif object.court_type == 'DIS' %}Court Type: District Court
+      {% elif object.court_type == 'SES' %}Court Type: Sessions Court{% endif %}</h4><br>
+      <h4>Subject: {{ object.subject }}&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Filing Date: {{ object.file_date }}</h4><br>
+      <h4>District: {{ object.district }} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;State: {{ object.state }}</h4><br>
+      <h4>Lawyer of Plaintiff: {{ object.advocate.username }} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Lawyer of Defendant: {{ object.lawyer_of_respondent }}</h4><br>
+    </div>
+</div>
+<!--
+<table style="width: 60%; size: 100%; margin-left: 50px;">
+    <h2>Case Details</h2><br>
+    <tr>
+        <h4>CNR Number: {{ object.cnr }}</h4>
+        <td colspan="3">{{ object.cnr }}</td>
+    </tr>
+    <tr>
+        <th align='center'>{{ object.name_of_applicant }} Vs. {{ object.name_of_respondent }}</th>
+    <tr>
+        <th>Case Type: </th>
+        <td colspan="3">{{ object.case_type }}</td>
+        <th>Court Type: </th>
+        <td colspan="3">{{ object.court_type }}</td>
+    </tr>
+    <tr>
+        <th>Filing Date</th>
+        <td>{{ object.file_date }}</td>
+        <th>Registration Date</th>
+        <td>dd/mm/yyyy</td>
+    </tr>
+    <tr>
+        <th>District: </th>
+        <td colspan="3">{{ object.district }}</td>
+        <th>State: </th>
+        <td colspan="3">{{ object.state }}</td>
+    </tr>
+    <tr>
+        <th>Subject: </th>
+        <td colspan="3">{{ object.subject }}</td>
+    </tr>
+    <tr>
+        <th>Lawyer of Plaintiff: </th>
+        <td colspan="3">{{ object.advocate }}</td>
+        <th>Lawyer of Defendant: </th>
+        <td colspan="3">{{ object.lawyer_of_respondent }}</td>
+    </tr>
+</table> 
+-->
+<form method="POST" style="margin-left: 385px;">
+    {% csrf_token %}
+    <fieldset style="color: black; font-size: medium;"></fieldset>
+        <label for="court" style="font-size: large;">Case Verdict: </label>
+        {{ form.verdict }}
+    </fieldset><br><br>
+    <button type="submit" value="True" style="margin-left: 300px; font-size: 22px;">Close Case</button>
+</form>
+
+  <!-- Site footer -->
+  <hr><br>
+  <footer class="site-footer fix">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify"><i>TOWARDS A DIGITAL INDIA </i> The e-Courts project was conceptualized on the basis of the National Policy and Action Plan for Implementation of information and communication technology in the Indian Judiciary–2005 submitted by e-Committee, with a vision to transform the Indian Judiciary by ICT enablement of Courts.</p>
+        </div>
+  
+        <div class="col-xs-6 col-md-3">
+          <h6>Categories</h6>
+          <ul class="footer-links">
+            <li><a href="">Supreme Court</a></li>
+            <li><a href="">High Courts</a></li>
+            <li><a href="">District Courts</a></li>
+            <li><a href="">CONTACT US</a></li>
+  
+          </ul>
+        </div>
+  
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Contribute</a></li>
+            <li><a href="">Privacy Policy</a></li>
+  
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2021
+       <a href="#">E-Courts</a>.
+          </p>
+        </div>
+  
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  </body>
+  </html>
