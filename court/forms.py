@@ -79,3 +79,10 @@ class FeesForm(forms.Form):
     court = forms.CharField(max_length=50)
     case = forms.CharField(max_length=50)
     subtype = forms.CharField(max_length=50)
+
+class VerdictForm(forms.ModelForm):
+    class Meta:
+        model = Case
+        fields = [
+            "verdict",
+        ]

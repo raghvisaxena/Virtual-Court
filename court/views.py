@@ -71,8 +71,8 @@ class UserFormView(View):
                     judge_details.user=user
                     judge_details.license_no=license_no
                     judge_details.name=first_name+last_name
-                    judge_details.court_type=court
-                    judge_details.address=address
+                    judge_details.court_type=' '.join(map(str, court))
+                    judge_details.district=address
                     judge_details.save()
                     messages.success(request, "Account register successfully")
                     return redirect("court:login")
@@ -101,13 +101,13 @@ class LoginView(View):
             if user.is_active:
                 login(request, user)
                 user_profile=UserProfile.objects.get(user=request.user)
-                # print(user_profile)
+                #print(user_profile)
                 user_type=user_profile.user_type
-                # print(user_type)
+                #print(user_type)
                 if user_type=="Lawyer":
                     return redirect("court:advocate")
                 elif user_type=="Judge":
-                    return render(request, "court/judge.html")
+                    return redirect("court:judge")
                 else:
                     return redirect("court:login",{"Wrong User Type"})
 
@@ -162,7 +162,7 @@ class FileCase(LoginRequiredMixin,View):
                 print(form.instance.district)
                 form.instance.judge=get_judge(form.instance.court_type,form.instance.district)
                 provider.save()
-                return render(request, 'court/advocate.html')
+                return redirect("court:advocate")
             
         else:
             return render(request,self.template_name,{'form':form})
@@ -210,18 +210,53 @@ class AdvocateView(ListView):
     model = Case
 
     def get_queryset(self):
-        print(1)
         qs = super().get_queryset()
-        print(2)
         user = self.request.user
-        print(3)
-        # if user is None:
-        #     print(0)
-        #     return None
-        print(10)
-        print(qs.filter(advocate=user))
+        if user is None:
+            print(0)
+            return None
         return qs.filter(advocate=user)
-        
+
+class JudgeView(ListView):
+    template_name = 'court/judge.html'
+    context_object_name = "case_details"
+    model = Case
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        j = Judge.objects.get(user=self.request.user)
+        if j is None:
+             print(0)
+             return None
+        return qs.filter(judge=j)
+
+class VerdictView(UpdateView):
+    template_name = "court/Case_form.html"
+    context_object_name = "case_details"
+    model = Case
+    fields = [
+        'verdict',
+        'status',
+    ]
+    def post(self,request,pk):
+        provider = Case.objects.get(id=pk)
+        form=VerdictForm(request.POST,instance=provider)
+        if form.is_valid():
+            provider=form.save(commit=False)
+            verdict=form.cleaned_data["verdict"]
+            provider.status = True
+            provider.save(update_fields=["verdict","status"])
+            return redirect("court:judge")
+    #def post(self,request,pk):
+    #    case = Case.objects.get(pk=id)
+    #    form = VerdictForm(request.POST, instance=case)
+    #    form.save()
+    #    return redirect("court:judge")
+    #def form_valid(self,form):
+    #    form.instance.advocate = self.request.user
+    #    return super().form_valid(form)
+
+
 
 # class SearchForm(View):
 #     form_class=SearchForm

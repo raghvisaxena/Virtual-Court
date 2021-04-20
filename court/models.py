@@ -22,6 +22,11 @@ Case_type=[
     ("CIV","Civil"),
     ("CRI","Criminal"),
 ]
+
+Verdict_type=[
+    ("Guilty","Guilty"),
+    ("Not-Guilty","Not-Guilty")
+]
 def user_directory_path(instance, filename): 
     # file will be uploaded to MEDIA_ROOT / user_<id>/<filename> 
     return 'user_{0}/{1}'.format(instance.user.id, filename) 
@@ -53,14 +58,14 @@ class Judge(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
     name=models.CharField(max_length=100)
     court_type=models.CharField(choices=Court_Type,max_length=20)
-    district=models.CharField(max_length=100,blank=True,null=True)
+    district=models.CharField(max_length=500)
     license_no = models.CharField(max_length=17, primary_key=True)
     
 class Case(models.Model):
     advocate=models.ForeignKey(User,on_delete=models.CASCADE,related_name="advocate_user")
     name_of_applicant=models.CharField(max_length=400)
-    phone_number=models.BigIntegerField()
     address=models.CharField(max_length=500)
+    phone_number=models.BigIntegerField(null=True, blank=True)
     case_type=models.CharField(max_length=3,choices=Case_type)
     court_type=models.CharField(choices=Court_Type,max_length=3)
     subject=models.CharField(max_length=500)
@@ -75,6 +80,7 @@ class Case(models.Model):
     address_of_respondent=models.CharField(max_length=500, null=True)
     file_date=models.DateField(auto_now=True, blank=True, null=True)
     judge=models.ForeignKey(Judge,on_delete=models.CASCADE,related_name="judge_user",null=True,blank=True)
+    verdict=models.CharField(choices=Verdict_type,max_length=10,blank=True,null=True)
 
     def __str__(self):
         return self.cnr

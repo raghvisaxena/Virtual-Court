@@ -478,7 +478,10 @@ font-size: larger;
 .case-data tr:nth-child(even) {background-color: #b9cecd;}
 table tr td a:hover{ color:#3a6c7c ;}
 
-
+.verdict{
+  size: 10px;
+  margin-top:1px;
+}
 
 
 

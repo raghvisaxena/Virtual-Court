@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "6vkr@%069kyd*^^t6j)pu_59wlcfw#tox32eo4ap)7&f(b#3fh"
+#SECRET_KEY = "6vkr@%069kyd*^^t6j)pu_59wlcfw#tox32eo4ap)7&f(b#3fh"
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['e-court.herokuapp.com']
 
 
 # Application definition
@@ -84,8 +87,8 @@ DATABASES = {
     "default": {
     "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "ecourt",
-        "USER": "postgres",
-    "PASSWORD": "Manu#123@",
+        "USER": os.environ.get("DB_USER"),
+    "PASSWORD": os.environ.get("DB_PWRD"),
         "HOST": "localhost",
         "PORT": "5432",
     }
@@ -128,8 +131,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
 import os
 
-MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+django_heroku.settings(locals())
