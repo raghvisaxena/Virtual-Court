@@ -69,7 +69,7 @@ class Case(models.Model):
     case_type=models.CharField(max_length=3,choices=Case_type)
     court_type=models.CharField(choices=Court_Type,max_length=3)
     subject=models.CharField(max_length=500)
-    file=models.FileField(upload_to=user_directory_path, blank=True, null=True)
+    docs=models.FileField(upload_to='casedocs', blank=True, null=True)
     cnr=models.CharField(max_length=16, unique=True, blank=True,null=True)
     fileNo=models.CharField(max_length=16, unique=True, blank=True,null=True)
     status=models.BooleanField(default=False)

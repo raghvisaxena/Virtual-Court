@@ -27,15 +27,10 @@
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="home.html">Home</a>
+          <a href="{% url 'court:home' %}">Home</a>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Supreme Court</a></li>
-            <li><a href="#">High Courts</a></li>
-            <li><a href="#">District Courts</a></li>
-          </ul>
+        <li>
+          <a href="{% url 'court:about' %}">About</a>
         </li>
         <li>
           <a href="{% url 'court:feecalc' %}">Fee calculator</a>

@@ -12,6 +12,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 import random, string, datetime, time
 from court.utils import get_judge, get_hearingdate
+from django.db.models import Q
+
 
 def generateKey():
     x = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
