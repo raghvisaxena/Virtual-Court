@@ -56,7 +56,7 @@ class CaseForm(forms.ModelForm):
             "case_type",
             "court_type",
             "subject",
-            "docs",
+            "file",
             "district",
             "state",
             "name_of_respondent",
