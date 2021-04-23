@@ -66,13 +66,34 @@
 
 
 <h1 class="welcome">Welcome!</h1>
+<button type="button" onclick="hdate()" class="file">&nbsp;Reminder&nbsp;</button>
+<div id="reminder_hearing" style="display: none; margin-left: 180px;">
+  <h3 id="remindhead"> Hearing(s) on {{case.hearing_date}}</h3>
+  <h5 id="nohearing" style="display: none;">No hearings</h5>
+  {% for case in case_details %}
+  {% if case.hr %}
+  <h5>File No.: {{case.fileNo}}&emsp;&emsp;{{case.name_of_applicant}} v. {{case.name_of_respondent}}</h5>
+  <h5 id="dummy" style="display: none;"></h5>
+  <script>
+    document.getElementById("dummy").style.display="block";
+  </script>
+  {% else %}
+  <script>
+    x=document.getElementById("dummy");
+    if(x.style.display=="none"){
+      document.getElementById("nohearing").style.display="block";
+    }
+  </script>
+  {% endif %}
+  {% endfor %}
+</div>
+
 
 <table>
- <tr>   
-
+<tr>   
 <td>
 <div class="wrap">
-    <div class="search">
+    <div class="search" style="margin-left: 300px;">
       <form class="navbar-form navbar-right">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -146,6 +167,24 @@
     <td class="case-data">Someone</td>
 </tr> -->
 </table><br><br>
+
+<script>
+  function hdate(){
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    d=d+1;
+    document.getElementById("remindhead").innerHTML="Hearing(s) on " + m + "/" + d + "/" + y;
+    x=document.getElementById("reminder_hearing");
+    if(x.style.display=="block"){
+      x.style.display="none";
+    }
+    else if(x.style.display=="none"){
+      x.style.display="block"
+    }
+  }
+</script>
 
   <!-- Site footer -->
 <hr><br>

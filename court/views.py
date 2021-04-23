@@ -10,8 +10,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib import messages
-import random, string
-from court.utils import get_judge
+import random, string, datetime, time
+from court.utils import get_judge, get_hearingdate
 
 def generateKey():
     x = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
@@ -161,6 +161,7 @@ class FileCase(LoginRequiredMixin,View):
                 print(form.instance.court_type)
                 print(form.instance.district)
                 form.instance.judge=get_judge(form.instance.court_type,form.instance.district)
+                form.instance.hearing_date=get_hearingdate()
                 provider.save()
                 return redirect("court:advocate")
             
@@ -209,26 +210,55 @@ class AdvocateView(ListView):
     context_object_name = "case_details"
     model = Case
 
+    def hearing_reminder(self,qsf):
+        for case in qsf:
+            hd = case.hearing_date - datetime.timedelta(days=1)
+            curdate = datetime.datetime.today()
+            if (hd.day == curdate.day and hd.month == curdate.month and hd.year == curdate.year):
+                case.hr = True
+
     def get_queryset(self):
         qs = super().get_queryset()
         user = self.request.user
         if user is None:
             print(0)
             return None
-        return qs.filter(advocate=user)
+        qsf = qs.filter(advocate=user)
+        self.hearing_reminder(qsf)
+        return qsf
 
 class JudgeView(ListView):
     template_name = 'court/judge.html'
     context_object_name = "case_details"
     model = Case
 
+    def hearing_reminder(self,qsf):
+        for case in qsf:
+            hd = case.hearing_date - datetime.timedelta(days=1)
+            curdate = datetime.datetime.today()
+            if (hd.day == curdate.day and hd.month == curdate.month and hd.year == curdate.year):
+                case.hr = True
+
+    #def schedulerrun(self,jqs):
+    #    print("hr4")
+    #    schedule.every().day.at("23:30").do(hearing_reminder)
+    #    print("hr5")
+    #    i=2
+    #    while i:
+    #        schedule.run_pending()
+    #    print("hr6")
+    
     def get_queryset(self):
         qs = super().get_queryset()
         j = Judge.objects.get(user=self.request.user)
         if j is None:
              print(0)
              return None
-        return qs.filter(judge=j)
+        qsf = qs.filter(judge=j)
+        #schedule.every().day.at("23:30").do(hearing_reminder,qsf)
+        self.hearing_reminder(qsf)
+        return qsf
+        
 
 class VerdictView(UpdateView):
     template_name = "court/Case_form.html"

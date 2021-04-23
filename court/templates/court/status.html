@@ -17,14 +17,11 @@
   <h3>Case Details</h3><br>
   <tr>
     <th >Case Type</th>
-    <td colspan="3">{{ case.case_type }}</td>
+    <td colspan="3">{% if object.case_type == 'CIV' %}Civil {% else %}Criminal {% endif %}</td>
     </tr>
   <tr>
     <th>Filing Date</th>
-      <td>dd/mm/yyyy</td>
-    <th>Registration Date</th>
-    <td>dd/mm/yyyy</td>
-
+      <td>{{ case.file_date }}</td>
   </tr>
   <tr>
     <th >CNR Number</th>
@@ -36,39 +33,60 @@
 <table style="width:100%" class="status"><br><br>
   <h3>Case Status</h3><br>
   <tr>
-    <th >First Hearing Date</th>
-    <td colspan="3">Write the First Hearing Date here</td>
-    </tr>
-  <tr>
-    <th>Next Hearing Date</th>
-      <td colspan="3">Write the next Hearing Date here</td>
-
-
+    <th >Hearing Date</th>
+    <td colspan="9">{{ case.hearing_date }}</td>
   </tr>
   <tr>
-    <th >Stage of case</th>
-    <td colspan="3">Write the Stage of case here</td>
-    </tr>
-
+    <th >Status case</th>
+    <td colspan="9">{% if case.status %}Closed{% else %}Pending{% endif %}</td>
+  </tr>
     <tr>
-      <th >Court Number and Judge</th>
-      <td colspan="3">Write the Court Number and Judge here</td>
-      </tr>
+      <th >Court</th>
+        {% if case.court_type == 'SUP' %}<td colspan="9">Supreme Court</td>
+        {% elif case.court_type == 'HIG' %}<td colspan="9">High Court</td>
+        {% elif case.court_type == 'DIS' %}<td colspan="9">District Court</td>
+        {% elif case.court_type == 'SES' %}<td colspan="9">Sessions Court</td>
+        {% endif %}
+    </tr>
+    <tr>    
+      {% if case.court_type == 'DIS' or case.court_type == 'SES' %}
+      <th >District</th>
+      <td colspan="4.5">{{ case.district }}</td>
+      <th >State</th>
+      <td colspan="4.5">{{ case.state }}</td>
+      {% endif %}
+    </tr>
+    <tr>
+      {% if case.court_type == 'HIG' %}
+      <th >State</th>
+      <td colspan="9">{{ case.state }}</td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th >Judge</th>
+      <td colspan="9">{{ case.judge.name }}</td>
+    </tr>
 
 </table>
 <table style="width:100%" class="status"><br><br>
   <h3>Petitioner and advocate</h3><br>
   <tr>
-    <td colspan="3">Write above details</td>
-    </tr>
+    <th >Petitioner</th>
+    <td colspan="3">{{ case.name_of_applicant}}</td>
+    <th >Advocate</th>
+    <td colspan="3">{{ case.advocate.username }}</td>
+  </tr>
 
 </table>
 <table style="width:100%" class="status"><br><br>
   <h3>Respondent and advocate</h3><br>
   <tr>
-    <td colspan="3">Write above details</td>
-    </tr>
-    {% endfor %}
+    <th >Respondent</th>
+    <td colspan="3">{{ case.name_of_respondent}}</td>
+    <th >Advocate</th>
+    <td colspan="3">{{ case.lawyer_of_respondent }}</td>
+  </tr>
+{% endfor %}
 </table>
 </div></div></div>
 
