@@ -1,5 +1,6 @@
 import random
-from court.models import Judge
+import datetime
+from court.models import Judge, Case
 
 def get_judge(court_type,district):
     judge_queryset=Judge.objects.filter(court_type=court_type,district=district)
@@ -15,3 +16,7 @@ def get_judge(court_type,district):
         return selected_judge
     else:
         return None
+
+def get_hearingdate():
+    hdate=datetime.datetime.today() + datetime.timedelta(days=5)
+    return hdate
