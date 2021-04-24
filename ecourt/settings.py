@@ -22,11 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = "6vkr@%069kyd*^^t6j)pu_59wlcfw#tox32eo4ap)7&f(b#3fh"
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = "330c05fdbbac7f056d82265aca81c1338e375f6235acf5b3"
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = True #(os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['e-court.herokuapp.com']
 
@@ -85,12 +85,12 @@ WSGI_APPLICATION = "ecourt.wsgi.application"
 # }
 DATABASES = {
     "default": {
-    "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "ecourt",
-        "USER": os.environ.get("DB_USER"),
-    "PASSWORD": os.environ.get("DB_PWRD"),
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "ecourt",
+            "USER": "postgres", #os.environ.get("DB_USER"),
+        "PASSWORD": "Manu#123@", #os.environ.get("DB_PWRD"),
+            "HOST": "localhost",
+            "PORT": "5432",
     }
 }
 

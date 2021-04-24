@@ -86,10 +86,8 @@
 <br><br><br>
 <ul class="Nav-case">
     <li>Total Cases <br> <span class="num">{{ case_details.count }}</span></li>
-    <li><button type="button" style="border: none;" onclick="myFunction()">Pending Cases<br></button> 
-      <span class="num" id="pendcount"></span></li>
-    <li><button type="button" style="border: none;" onclick="myFunction()"></button>Completed Cases<br> 
-      <span class="num" id="closedcount"></span></li>
+    <li>Pending Cases<br> <span class="num">{{pending}}</span></li>
+    <li>Completed Cases<br> <span class="num">{{closed}}</span></li>
 </ul>
 
 <table class="case-data" align="center">

@@ -229,6 +229,13 @@ class AdvocateView(ListView):
         self.hearing_reminder(qsf)
         return qsf
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = Case.objects.filter(advocate=self.request.user)
+        context['pending'] = queryset.filter(status=0).count()
+        context['closed'] = queryset.filter(status=1).count()
+        return context
+
 class JudgeView(ListView):
     template_name = 'court/judge.html'
     context_object_name = "case_details"
@@ -260,6 +267,13 @@ class JudgeView(ListView):
         #schedule.every().day.at("23:30").do(hearing_reminder,qsf)
         self.hearing_reminder(qsf)
         return qsf
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = Case.objects.filter(advocate=self.request.user)
+        context['pending'] = queryset.filter(status=0).count()
+        context['closed'] = queryset.filter(status=1).count()
+        return context
         
 
 class VerdictView(UpdateView):

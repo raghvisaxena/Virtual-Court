@@ -82,7 +82,7 @@ class Case(models.Model):
     judge=models.ForeignKey(Judge,on_delete=models.CASCADE,related_name="judge_user",null=True,blank=True)
     verdict=models.CharField(choices=Verdict_type,max_length=10,blank=True,null=True)
     hearing_date=models.DateField(blank=True, null=True)
-    hr=models.BooleanField(default=False)
+    hr=models.BooleanField(default=False, null=True,blank=True)
 
     def __str__(self):
         return self.cnr
