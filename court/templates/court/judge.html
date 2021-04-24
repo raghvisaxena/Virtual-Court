@@ -11,8 +11,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
 
+<body>
 <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
   <div class="container">
     <div class="navbar-header">
@@ -27,15 +27,10 @@
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="home.html">Home</a>
+          <a href="{% url 'court:home' %}">Home</a>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Supreme Court</a></li>
-            <li><a href="#">High Courts</a></li>
-            <li><a href="#">District Courts</a></li>
-          </ul>
+        <li>
+          <a href="{% url 'court:about' %}">About</a>
         </li>
         <li>
           <a href="{% url 'court:feecalc' %}">Fee calculator</a>
@@ -88,24 +83,7 @@
   {% endfor %}
 </div>
 
-
-<table>
-<tr>   
-<td>
-<div class="wrap">
-    <div class="search" style="margin-left: 300px;">
-      <form class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
- 
-        <button type="submit" class="btn"><span style="color:#335e5d;" class="fa fa-search"></span></button>
-      </form>
-    </div></div>
- </div>
-</td>
-</tr>
-</table>
-
+<br><br><br>
 <ul class="Nav-case">
     <li>Total Cases <br> <span class="num">{{ case_details.count }}</span></li>
     <li>Pending Cases<br> <span class="num">{{pending}}</span></li>
@@ -168,7 +146,19 @@
 </tr> -->
 </table><br><br>
 
+{% for case in case_details %}
+  {% if case.status %}
 <script>
+  // const body = document.body;
+  // body.onload = myFunction;
+
+  function myFunction() {
+    var c=0;
+    c++;
+    document.getElementById("pendcount").innerHTML=c;
+    document.getElementById("closedcount").innerHTML="count";
+  }
+
   function hdate(){
     n =  new Date();
     y = n.getFullYear();
@@ -185,6 +175,8 @@
     }
   }
 </script>
+{% endif %}
+{% endfor %}
 
   <!-- Site footer -->
 <hr><br>

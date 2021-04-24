@@ -54,17 +54,79 @@
 <!-- nav bar ends here -->
 
 <div class="container">
+<div class="row">
+<div class="col-sm-12 col-md-10">
+    <h2>Case Details</h2><br>
+<h4>CNR number: {{object.cnr}} </h4>
+<h3 style="text-align: center; margin-left: 100px;">{{ object.name_of_applicant }} v. {{ object.name_of_respondent }}</h3>
+
+<br><br>
+<table style="width:100%; font-size:large; margin-left: 110px;">
+<tr>
+<th >Case Type:</th>
+<td colspan="9" >{% if object.case_type == 'CIV' %} 
+  Civil  
+   {% else %}
+   Criminal 
+   {% endif %}</td>
+
+  <th colspan="9">Court Type:</th>
+  <td >
+    {% if object.court_type == 'SUP' %} Supreme Court
+    {% elif object.court_type == 'HIG' %} High Court
+    {% elif object.court_type == 'DST' %} District Court
+    {% elif object.court_type == 'SES' %} Sessions Court{% endif %}
+  </td>
+  </tr>
+<tr>
+  <th>Subject:</th>
+<td colspan="9">{{object.subject}}</td>
+<th colspan="9">Filing Date</th>
+  <td >{{object.file_date}}</td>
+
+
+</tr>
+<tr>
+  <th>District:</th>
+    <td colspan="9">{{object.district}}</td>
+  <th colspan="9">State</th>
+  <td >{{object.state}}</td>
+
+</tr>
+<tr>
+<th >Lawyer of Applicant:</th>
+<td colspan="9" style="width:270px;">{{object.advocate.username}}</td>
+<th colspan="9">Lawyer of Respondent:</th>
+<td >{{object.lawyer_of_respondent}}</td>
+</tr>
+</table>
+<br>
+<form method="POST" style="margin-left: 110px;">
+<br>{% csrf_token %}
+<fieldset style="color: black; font-size: large;"></fieldset>
+  <label for="court" style="font-size:large;">Case Verdict: </label>
+  {{ form.verdict }}
+</fieldset><br><br>
+<button class="tn btn-info" type="submit" value="True" style="margin-left: 360px; font-size: 15px; background-color: #3c7271; 
+color: white; 
+border: 2px solid #3c7271; padding: 10px 16px;">Close Case</button>
+</form>
+
+</div></div></div>
+
+<!-- hmmmmmmmmmmm
+<div class="container">
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
+        Indicators 
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
           <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
       </div>
-</div>
+</div> -->
 
-<div style="margin-left: 275px;"> 
+<!-- <div style="margin-left: 275px;"> 
     <h2>Case Details</h2><br>
     <h4>CNR Number: {{ object.cnr }}</h4>
     <h3 style="text-align: center; margin-left: -300px;">{{ object.name_of_applicant }} v. {{ object.name_of_respondent }}</h3<br><br><br> 
@@ -78,54 +140,16 @@
       <h4>District: {{ object.district }} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;State: {{ object.state }}</h4><br>
       <h4>Lawyer of Plaintiff: {{ object.advocate.username }} &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Lawyer of Defendant: {{ object.lawyer_of_respondent }}</h4><br>
     </div>
-</div>
-<!--
-<table style="width: 60%; size: 100%; margin-left: 50px;">
-    <h2>Case Details</h2><br>
-    <tr>
-        <h4>CNR Number: {{ object.cnr }}</h4>
-        <td colspan="3">{{ object.cnr }}</td>
-    </tr>
-    <tr>
-        <th align='center'>{{ object.name_of_applicant }} Vs. {{ object.name_of_respondent }}</th>
-    <tr>
-        <th>Case Type: </th>
-        <td colspan="3">{{ object.case_type }}</td>
-        <th>Court Type: </th>
-        <td colspan="3">{{ object.court_type }}</td>
-    </tr>
-    <tr>
-        <th>Filing Date</th>
-        <td>{{ object.file_date }}</td>
-        <th>Registration Date</th>
-        <td>dd/mm/yyyy</td>
-    </tr>
-    <tr>
-        <th>District: </th>
-        <td colspan="3">{{ object.district }}</td>
-        <th>State: </th>
-        <td colspan="3">{{ object.state }}</td>
-    </tr>
-    <tr>
-        <th>Subject: </th>
-        <td colspan="3">{{ object.subject }}</td>
-    </tr>
-    <tr>
-        <th>Lawyer of Plaintiff: </th>
-        <td colspan="3">{{ object.advocate }}</td>
-        <th>Lawyer of Defendant: </th>
-        <td colspan="3">{{ object.lawyer_of_respondent }}</td>
-    </tr>
-</table> 
--->
-<form method="POST" style="margin-left: 385px;">
+</div> -->
+
+<!-- <form method="POST" style="margin-left: 385px;">
     {% csrf_token %}
     <fieldset style="color: black; font-size: medium;"></fieldset>
         <label for="court" style="font-size: large;">Case Verdict: </label>
         {{ form.verdict }}
     </fieldset><br><br>
     <button type="submit" value="True" style="margin-left: 300px; font-size: 22px;">Close Case</button>
-</form>
+</form> -->
 
   <!-- Site footer -->
   <hr><br>

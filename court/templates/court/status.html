@@ -8,11 +8,11 @@
 
 <form id="cnrsearch"  method="GET" action="">
   <input type="text" placeholder="Enter CNR..." name="search" style="color:black">
-  <button type="submit"><i class="fa fa-search"></i></button>
+  <button type="submit" style="background-color: #4c8d8c;"><i class="fa fa-search"></i></button>
 </form>
 
 <br><br>
-<table style="width:100%" class="status">
+<table style="width:100%; background-color: #3c7271;" class="status">
   {% for case in case_details %}
   <h3>Case Details</h3><br>
   <tr>
@@ -30,7 +30,7 @@
 
 </table>
 
-<table style="width:100%" class="status"><br><br>
+<table style="width:100%; background-color: #3c7271;" class="status"><br><br>
   <h3>Case Status</h3><br>
   <tr>
     <th >Hearing Date</th>
@@ -44,7 +44,7 @@
       <th >Court</th>
         {% if case.court_type == 'SUP' %}<td colspan="9">Supreme Court</td>
         {% elif case.court_type == 'HIG' %}<td colspan="9">High Court</td>
-        {% elif case.court_type == 'DIS' %}<td colspan="9">District Court</td>
+        {% elif case.court_type == 'DST' %}<td colspan="9">District Court</td>
         {% elif case.court_type == 'SES' %}<td colspan="9">Sessions Court</td>
         {% endif %}
     </tr>
@@ -68,7 +68,7 @@
     </tr>
 
 </table>
-<table style="width:100%" class="status"><br><br>
+<table style="width:100%; background-color: #3c7271;" class="status"><br><br>
   <h3>Petitioner and advocate</h3><br>
   <tr>
     <th >Petitioner</th>
@@ -78,7 +78,7 @@
   </tr>
 
 </table>
-<table style="width:100%" class="status"><br><br>
+<table style="width:100%; background-color: #3c7271; border-collapse: collapse; border-color:#3c7271;" class="status"><br><br>
   <h3>Respondent and advocate</h3><br>
   <tr>
     <th >Respondent</th>

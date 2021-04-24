@@ -586,8 +586,8 @@ body{
 }
 
 .status table, th, td {
-  border: 2px solid white;
-  border-collapse: collapse;
+  border: 3px solid #53B0AE;
+  
 }
 .status th, td {
   padding: 15px;
@@ -641,6 +641,7 @@ body{
 table.case-data{
   table-layout: auto;
   width: 80%;
+  
 }
 
 .case-data th{
