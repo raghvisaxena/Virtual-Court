@@ -23,7 +23,6 @@
   background: #4CAF50;
   position: relative;
   margin: auto;
-  
 }
 
 .containercasefile {
@@ -47,7 +46,6 @@
   background: #398887;
   padding: 25px;
   margin: auto;
-  
   box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.2), 0 10px 15px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -264,7 +262,6 @@ body{
   border-bottom-color: #FFFFFF
 }
 
-
 .search {
   width: 100%;
   position: relative;
@@ -321,13 +318,10 @@ body{
 		}
 	}
 
-  button {
-		background: transparent;
-	}
+  button { background: transparent; }
 
   .info{
     color: white;
-
   }
 
   .info2{
@@ -337,8 +331,6 @@ body{
      border-right: solid #336878;
   }
 
-
-
   .site-footer
 {
   background-color:#025e5c;
@@ -346,7 +338,6 @@ body{
   font-size:15px;
   line-height:24px;
   color:white;
-
 
 }
 .site-footer hr
@@ -657,42 +648,3 @@ font-size: larger;
 .case-data tr:nth-child(even) {background-color: #b9cecd;}
 table tr td a:hover{ color:#3a6c7c ;}
 
-/* #cnrsearch input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-}
-
-#cnrsearch button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-}
-
-#cnrsearch button:hover {
-  background: #0b7dda;
-}
-
-#cnrsearch::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-table, th, td {
-  border: 2px solid white;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-  text-align: left;
-} */
